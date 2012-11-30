@@ -1,0 +1,3 @@
+# Statigram Wordpress
+
+## Installation
