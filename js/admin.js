@@ -35,7 +35,7 @@
         var generateHtmlIframe = function() {
             var chooseContent = $('#choose-content');
             var chooseMode = $('#choose-mode');
-            var notrack = $('#notrack');
+            var notrack = $('#notrack').val();
             var parameters = {};
 
             if (chooseContent.val() === 'myfeed') {
