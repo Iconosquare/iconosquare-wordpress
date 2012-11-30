@@ -11,6 +11,7 @@
                 <div class="widget-holder">
                     <div class="content-column">
                         <form action="post" action="">
+                            <input type="hidden" id="notrack" value='1'>
                             <table class="form-table">
                                 <tbody>
                                     <tr valign="top">
@@ -62,6 +63,16 @@
                                     <tr valign="top">
                                         <th scope="row"><label for="height">Height (in pixels)</label></th>
                                         <td><input name="height" type="text" id="height" value="420" class="regular-text"></td>
+                                    </tr>
+
+                                    <tr valign="top">
+                                        <th scope="row"><label for="choose-mode">Mode</label></th>
+                                        <td>
+                                        <select name="choose-mode" id="choose-mode">
+                                            <option selected="selected" value="grid">Grid</option>
+                                            <option value="slideshow">Slideshow</option>
+                                        </select>
+                                        </td>
                                     </tr>
 
                                     <tr valign="top" class="mode-grid">
@@ -125,7 +136,7 @@
                                         <th scope="row"><label for="text">Widget border</label></th>
                                         <td>
                                             <input name="widget-border" type="checkbox" id="widget-border" checked="checked">
-                                            <input name="radius" type="radius" id="text" value="5" class="small-text">px (radius)
+                                            <input name="radius" type="radius" id="radius" value="5" class="small-text">px (radius)
                                             <input name="border-color" type="text" id="border-color" value="DDDDDD" class="regular-text">
                                         </td>
                                     </tr>
@@ -148,7 +159,7 @@
                 </div>
                 <div class="widgets-sortables ui-sortable">
                     <div class="content-column">
-                        <div id="statigram-iframe-content"></div>
+                        <div id="content-iframe"></div>
                     </div>
                 </div>
             </div>

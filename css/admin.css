@@ -45,3 +45,18 @@
 #wrap-statigram .submit {
     text-align: center;
 }
+
+#wrap-statigram .sep {
+    width: 23px;
+    text-align: center;
+    font-weight: bold;
+    display: inline-block;
+}
+
+#wrap-statigram #content-iframe {
+    padding-top: 37px;
+}
+
+#wrap-statigram .hash-group, #wrap-statigram .mode-slideshow {
+    display: none;
+}
