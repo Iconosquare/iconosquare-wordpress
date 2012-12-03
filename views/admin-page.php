@@ -2,6 +2,16 @@
     <div id="icon-themes" class="icon32"><br></div>
     <h2>Generate your Instagram widget</h2>
     <br>
+    <?php
+    if ($updateSuccess) {
+        //Post published. View post
+    ?>
+        <div id="message" class="updated below-h2">
+            <p>Your plugin configuration was saved.</p>
+        </div>
+    <?php
+    }
+    ?>
     <div class="widget-liquid-left">
         <div id="widgets-left">
             <div class="widgets-holder-wrap">

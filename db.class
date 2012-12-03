@@ -124,6 +124,10 @@ class db {
             }
             self::dbUpdateOneField('radius', $postDatas['radius']);
             self::dbUpdateOneField('borderColor', $postDatas['border-color']);
+            
+            return true;
+        } else {
+            return false;
         }
     }
     

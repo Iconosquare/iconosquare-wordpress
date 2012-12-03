@@ -214,7 +214,6 @@ add_action('widgets_init', create_function('', 'register_widget("StatigramWidget
 
 //Soumission du formulaire
 if (isset($_POST['settingPlugin'])) {
-    var_dump($_POST);
-    db::dbUpdateMultiFields($_POST);    
+    $updateSuccess = db::dbUpdateMultiFields($_POST);
 }
 
