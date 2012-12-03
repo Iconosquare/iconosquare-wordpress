@@ -47,8 +47,8 @@
                                         <th scope="row"><label for="linking">Linking to</label></th>
                                         <td>
                                         <select name="linking" id="linking">
-                                            <option <?php if($pluginValues->link == 'statigram') echo 'selected="selected"'; ?> value="statigram">Statigram</option>
-                                            <option <?php if($pluginValues->link == 'instagram') echo 'selected="selected"'; ?> value="instagram">Instagram</option>
+                                            <option <?php if($pluginValues->linking == 'statigram') echo 'selected="selected"'; ?> value="statigram">Statigram</option>
+                                            <option <?php if($pluginValues->linking == 'instagram') echo 'selected="selected"'; ?> value="instagram">Instagram</option>
                                         </select>
                                         &nbsp; Choose where the link redirect
                                         </td>
@@ -71,7 +71,7 @@
                                         <td>
                                         <select name="choose-mode" id="choose-mode">
                                             <option <?php if($pluginValues->mode == 'grid') echo 'selected="selected"'; ?> value="grid">Grid</option>
-                                            <option <?php if($pluginValues->link == 'slideshow') echo 'selected="selected"'; ?> value="slideshow">Slideshow</option>
+                                            <option <?php if($pluginValues->mode == 'slideshow') echo 'selected="selected"'; ?> value="slideshow">Slideshow</option>
                                         </select>
                                         </td>
                                     </tr>
@@ -82,7 +82,7 @@
                                             <select name="layoutX" id="layoutX">
                                                 <option <?php if($pluginValues->layoutX == '1') echo 'selected="selected"'; ?> value="1">1</option>
                                                 <option <?php if($pluginValues->layoutX == '2') echo 'selected="selected"'; ?> value="2">2</option>
-                                                <option <?php if($pluginValues->layoutX == '3') echo 'selected="selected"'; ?> value="3" selected="">3</option>
+                                                <option <?php if($pluginValues->layoutX == '3') echo 'selected="selected"'; ?> value="3">3</option>
                                                 <option <?php if($pluginValues->layoutX == '4') echo 'selected="selected"'; ?> value="4">4</option>
                                                 <option <?php if($pluginValues->layoutX == '5') echo 'selected="selected"'; ?> value="5">5</option>
                                                 <option <?php if($pluginValues->layoutX == '6') echo 'selected="selected"'; ?> value="6">6</option>

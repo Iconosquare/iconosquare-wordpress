@@ -111,9 +111,9 @@ class db {
             self::dbUpdateOneField('padding', $postDatas['padding']);
             self::dbUpdateOneField('pace', $postDatas['pace']);
             if ($postDatas['photo-border'] == 'on') {
-                self::dbUpdateOneField('photo-border', 1);
+                self::dbUpdateOneField('photoBorder', 1);
             } else {
-                self::dbUpdateOneField('photo-border', 0);
+                self::dbUpdateOneField('photoBorder', 0);
             }
             self::dbUpdateOneField('background', $postDatas['background']);
             self::dbUpdateOneField('text', $postDatas['text']);
@@ -123,7 +123,7 @@ class db {
                 self::dbUpdateOneField('widgetBorder', 0);
             }
             self::dbUpdateOneField('radius', $postDatas['radius']);
-            self::dbUpdateOneField('border-color', $postDatas['borderColor']);
+            self::dbUpdateOneField('borderColor', $postDatas['border-color']);
         }
     }
     
