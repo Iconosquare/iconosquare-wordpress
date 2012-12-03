@@ -1,4 +1,6 @@
-## Statigram Wordpress Plugin - Photo Gallery Widget
+# Statigram Wordpress Plugin
+
+## Photo Gallery Widget
 
 This advanced widget lets you beautifully showcase Instagram photos on your blog
 or website.
