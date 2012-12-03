@@ -169,7 +169,7 @@ class Db
             }
             self::dbUpdateOneField('radius', $postDatas['radius']);
             self::dbUpdateOneField('borderColor', $postDatas['border-color']);
-            
+
             return true;
         } else {
             return false;
@@ -283,5 +283,18 @@ class Db
 
         $url = "http://statigr.am/widget.php?" . http_build_query($values);
         return '<iframe src="'.$url.'" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:'.$values['width'].'px; height:'.$values['height'].'px;"></iframe>';
+    }
+
+    /**
+     * Render iframe
+     *
+     * @return string
+     */
+    public static function renderIframe()
+    {
+        $pluginValues = self::getPluginValues();
+        $value = Db::parseValues($pluginValues);
+
+        return $value;
     }
 }
