@@ -124,12 +124,12 @@
 
                                     <tr valign="top" class="background">
                                         <th scope="row"><label for="background">Background color</label></th>
-                                        <td><input name="background" type="text" id="background" value="FFFFFF" class="regular-text"><br> Leave empty for transparent</td>
+                                        <td><input name="background" type="text" id="background" value="FFFFFF" class="regular-text color {required: false}"><br> Leave empty for transparent</td>
                                     </tr>
 
                                     <tr valign="top" class="text">
                                         <th scope="row"><label for="text">Text color</label></th>
-                                        <td><input name="text" type="text" id="text" value="777777" class="regular-text"></td>
+                                        <td><input name="text" type="text" id="text" value="777777" class="regular-text color {required: false}"></td>
                                     </tr>
 
                                     <tr valign="top" class="text">
@@ -137,7 +137,7 @@
                                         <td>
                                             <input name="widget-border" type="checkbox" id="widget-border" checked="checked">
                                             <input name="radius" type="radius" id="radius" value="5" class="small-text">px (radius)
-                                            <input name="border-color" type="text" id="border-color" value="DDDDDD" class="regular-text">
+                                            <input name="border-color" type="text" id="border-color" value="DDDDDD" class="regular-text color {required: false}">
                                         </td>
                                     </tr>
                                 </tbody>

@@ -38,6 +38,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 class StatigramWidget extends WP_Widget
 {
+    // Set this to true to get the state of origin, so you don't need to always
+    // uninstall during development.
+    const STATE_OF_ORIGIN = true;
+
     /**
      * The widget constructor. Specifies the classname and description, instantiates
      * the widget, loads localization files, and includes necessary scripts and
@@ -49,16 +53,14 @@ class StatigramWidget extends WP_Widget
         // Manage plugin ativation/deactivation hooks
         register_activation_hook(__FILE__, array($this, 'activate'));
         register_deactivation_hook(__FILE__, array($this, 'deactivate'));
+        register_uninstall_hook(__FILE__, array($this, 'uninstall'));
 
-        // TODO: update classname and description
-        // TODO: replace 'widget-name-locale' to be named more plugin specific.
-        // other instances exist throughout the code, too.
         parent::__construct(
-            'widget-name-id',
-            __('Widget Name', 'widget-name-locale'),
+            'statigram-id',
+            __('Statigram Widget', 'statigram-locale'),
             array(
                 'classname'     =>  'statigram-widget',
-                'description'   =>  __('Short description of the widget goes here.', 'widget-name-locale')
+                'description'   =>  __('This advanced widget lets you beautifully showcase Instagram photos on your blog or website.', 'statigram-locale')
            )
         );
 
@@ -111,11 +113,6 @@ class StatigramWidget extends WP_Widget
 
         echo $before_widget;
 
-        // TODO: This is where you retrieve the widget values.
-        // Note that this 'Title' is just an example
-        $isTitleEmpty = empty($instance['title']) ? __('Widget Name', 'widget-name-locale') : $instance['title'];
-        $title = apply_filters('widget_title', $isTitleEmpty, $instance, $this->id_base);
-
         include plugin_dir_path(__FILE__) . '/views/widget.php';
 
         echo $after_widget;
@@ -133,15 +130,7 @@ class StatigramWidget extends WP_Widget
      */
     public function update($new_instance, $old_instance)
     {
-
-        $instance = $old_instance;
-
-        // TODO Update the widget with the new values
-        // Note that this 'Title' is just an example
-        $instance['title'] = strip_tags($new_instance['title']);
-
-        return $instance;
-
+        return $new_instance;
     }
 
     /**
@@ -153,20 +142,8 @@ class StatigramWidget extends WP_Widget
      */
     public function form($instance)
     {
-
-        // TODO define default values for your variables
-        $instance = wp_parse_args(
-            (array) $instance,
-            array(
-                'title' =>  __('Widget Name', 'widget-name-locale'),
-           )
-        );
-
-        // TODO store the values of widget in a variable
-
-        // Display the admin form
-        include plugin_dir_path(__FILE__) . '/views/admin.php';
-
+        // No form here
+        return null;
     }
 
     /**
@@ -180,7 +157,9 @@ class StatigramWidget extends WP_Widget
      */
     public function activate($network_wide)
     {
-        // TODO define activation functionality here
+        // Redirect the user to the widget dashboard after activation
+        wp_redirect(admin_url('themes.php?page=statigram'));
+        exit();
     }
 
     /**
@@ -194,9 +173,24 @@ class StatigramWidget extends WP_Widget
      */
     public function deactivate($network_wide)
     {
-        // TODO define deactivation functionality here
+        // Nothing for the moment
+        var_dump('lol');
     }
 
+    /**
+     * Fired when the plugin is uninstalled
+     *
+     * @param  boolean $network_wide True if WPMU superadmin uses
+     * "Network Activate" action, false if WPMU is disabled or plugin is
+     * activated on an individual blog
+     *
+     * @return [type]               [description]
+     */
+    public function uninstall($network_wide)
+    {
+        // @TODO: remove tables
+
+    }
 
     /**
      * Load the plugin text domain on "init"
@@ -226,6 +220,7 @@ class StatigramWidget extends WP_Widget
      */
     public function registerAdminScripts()
     {
+        wp_enqueue_script('statigram-admin-script-color', plugins_url('statigram/js/jscolor.js'));
         wp_enqueue_script('statigram-admin-script', plugins_url('statigram/js/admin.js'));
     }
     
