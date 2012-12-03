@@ -54,11 +54,11 @@ class StatigramWidget extends WP_Widget
         // TODO: replace 'widget-name-locale' to be named more plugin specific.
         // other instances exist throughout the code, too.
         parent::__construct(
-            'widget-name-id',
-            __('Widget Name', 'widget-name-locale'),
+            'statigram-id',
+            __('Statigram Widget', 'statigram-locale'),
             array(
                 'classname'     =>  'statigram-widget',
-                'description'   =>  __('Short description of the widget goes here.', 'widget-name-locale')
+                'description'   =>  __('This advanced widget lets you beautifully showcase Instagram photos on your blog or website.', 'statigram-locale')
            )
         );
 
@@ -111,11 +111,6 @@ class StatigramWidget extends WP_Widget
 
         echo $before_widget;
 
-        // TODO: This is where you retrieve the widget values.
-        // Note that this 'Title' is just an example
-        $isTitleEmpty = empty($instance['title']) ? __('Widget Name', 'widget-name-locale') : $instance['title'];
-        $title = apply_filters('widget_title', $isTitleEmpty, $instance, $this->id_base);
-
         include plugin_dir_path(__FILE__) . '/views/widget.php';
 
         echo $after_widget;
@@ -133,15 +128,7 @@ class StatigramWidget extends WP_Widget
      */
     public function update($new_instance, $old_instance)
     {
-
-        $instance = $old_instance;
-
-        // TODO Update the widget with the new values
-        // Note that this 'Title' is just an example
-        $instance['title'] = strip_tags($new_instance['title']);
-
-        return $instance;
-
+        return $new_instance;
     }
 
     /**
@@ -153,20 +140,8 @@ class StatigramWidget extends WP_Widget
      */
     public function form($instance)
     {
-
-        // TODO define default values for your variables
-        $instance = wp_parse_args(
-            (array) $instance,
-            array(
-                'title' =>  __('Widget Name', 'widget-name-locale'),
-           )
-        );
-
-        // TODO store the values of widget in a variable
-
-        // Display the admin form
-        include plugin_dir_path(__FILE__) . '/views/admin.php';
-
+        // No form here
+        return null;
     }
 
     /**
@@ -196,7 +171,7 @@ class StatigramWidget extends WP_Widget
      */
     public function deactivate($network_wide)
     {
-        // TODO define deactivation functionality here
+        // Nothing for the moment
     }
 
 
