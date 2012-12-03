@@ -208,19 +208,19 @@ class StatigramWidget extends WP_Widget
     /**
      * Outputs the content of the widget.
      *
-     * @param array $args [description]
+     * @param array $args arguments
      *
-     * @return [type]           [description]
+     * @return string widget html content
      */
     public function widget($args)
     {
         extract($args, EXTR_SKIP);
 
-        echo $before_widget;
+        echo $args['before_widget'];
 
         include plugin_dir_path(__FILE__) . '/views/widget.php';
 
-        echo $after_widget;
+        echo $args['after_widget'];
     }
 
     /**
