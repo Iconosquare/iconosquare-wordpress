@@ -38,6 +38,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 class StatigramWidget extends WP_Widget
 {
+    // Set this to true to get the state of origin, so you don't need to always
+    // uninstall during development.
+    const STATE_OF_ORIGIN = true;
+
     /**
      * The widget constructor. Specifies the classname and description, instantiates
      * the widget, loads localization files, and includes necessary scripts and
@@ -49,10 +53,8 @@ class StatigramWidget extends WP_Widget
         // Manage plugin ativation/deactivation hooks
         register_activation_hook(__FILE__, array($this, 'activate'));
         register_deactivation_hook(__FILE__, array($this, 'deactivate'));
+        register_uninstall_hook(__FILE__, array($this, 'uninstall'));
 
-        // TODO: update classname and description
-        // TODO: replace 'widget-name-locale' to be named more plugin specific.
-        // other instances exist throughout the code, too.
         parent::__construct(
             'statigram-id',
             __('Statigram Widget', 'statigram-locale'),
@@ -172,8 +174,23 @@ class StatigramWidget extends WP_Widget
     public function deactivate($network_wide)
     {
         // Nothing for the moment
+        var_dump('lol');
     }
 
+    /**
+     * Fired when the plugin is uninstalled
+     *
+     * @param  boolean $network_wide True if WPMU superadmin uses
+     * "Network Activate" action, false if WPMU is disabled or plugin is
+     * activated on an individual blog
+     *
+     * @return [type]               [description]
+     */
+    public function uninstall($network_wide)
+    {
+        // @TODO: remove tables
+
+    }
 
     /**
      * Load the plugin text domain on "init"
