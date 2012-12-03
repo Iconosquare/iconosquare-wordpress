@@ -149,17 +149,6 @@ class StatigramWidget extends WP_Widget
     }
 
 
-    /**
-     * Fired when the plugin is deactivated.
-     *
-     * @return null
-     */
-    public function deactivate()
-    {
-        // Nothing for the moment
-        Db::dbRemove();
-    }
-
 
     /**
      * Fired when the plugin is uninstalled
@@ -236,7 +225,6 @@ class StatigramWidget extends WP_Widget
 
 // Manage plugin ativation/deactivation hooks
 register_activation_hook(__FILE__, array("StatigramWidget", 'activate'));
-register_deactivation_hook(__FILE__, array("StatigramWidget", 'deactivate'));
 register_uninstall_hook(__FILE__, array("StatigramWidget", 'uninstall'));
 
 add_action('widgets_init', create_function('', 'register_widget("StatigramWidget");'));
