@@ -10,6 +10,12 @@
  * @version  1.0
  * @link     http://statigr.am
  **/
+
+// Posting widget form
+if (isset($_POST['settingPlugin'])) {
+    $updateSuccess = db::dbUpdateMultiFields($_POST);
+}
+
 $pluginValues = Db::getPluginValues();
 ?>
 
@@ -19,7 +25,6 @@ $pluginValues = Db::getPluginValues();
     <br>
     <?php
     if ($updateSuccess) {
-        //Post published. View post
     ?>
         <div id="message" class="updated below-h2">
             <p>Your plugin configuration was saved.</p>
@@ -36,6 +41,7 @@ $pluginValues = Db::getPluginValues();
                 <div class="widget-holder">
                     <div class="content-column">
                         <form method="post" action="<?php echo str_replace('%7E', '~', $_SERVER['REQUEST_URI']); ?>">
+                            <input type="hidden" id="loader" value="<?php echo StatigramWidget::getLoader(); ?>">
                             <input type="hidden" name="settingPlugin" value='1'>
                             <input type="hidden" id="notrack" value='1'>
                             <table class="form-table">
