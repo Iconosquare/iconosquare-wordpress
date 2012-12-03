@@ -65,7 +65,7 @@ class Db
         $sql = "CREATE TABLE IF NOT EXISTS `$table_name` (
                 `content` enum('myfeed','hashtag') NOT NULL DEFAULT 'myfeed',
                 `username` varchar(255) NOT NULL,
-                `hashtag` varchar(255) NOT NULL,
+                `hashtag` varchar(255) NOT NULL DEFAULT 'statigram',
                 `linking` enum('statigram','instagram') NOT NULL DEFAULT 'statigram',
                 `infos` tinyint(1) NOT NULL DEFAULT '1',
                 `width` int(6) NOT NULL DEFAULT '380',
@@ -169,6 +169,10 @@ class Db
             }
             self::dbUpdateOneField('radius', $postDatas['radius']);
             self::dbUpdateOneField('borderColor', $postDatas['border-color']);
+            
+            return true;
+        } else {
+            return false;
         }
     }
 

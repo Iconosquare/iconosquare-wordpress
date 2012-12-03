@@ -136,7 +136,7 @@
 
                     if (showLoader) {
                         iframe.hide();
-                        iframeWrapper.append('<img height=32 width=32 src="../wp-content/plugins/statigram/images/loader.gif" id="loaderFlux">');
+                        iframeWrapper.append('<img height=32 width=32 src="'+ $('#loader').val() +'" id="loaderFlux">');
                     }
 
                     iframe.load(function() {

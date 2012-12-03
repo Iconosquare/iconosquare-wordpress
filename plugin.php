@@ -186,7 +186,7 @@ class StatigramWidget extends WP_Widget
      */
     public function registerAdminStyles()
     {
-        wp_enqueue_style('statigram-admin-styles', plugins_url('statigram/css/admin.css'));
+        wp_enqueue_style('statigram-admin-styles', plugins_url('css/admin.css', __FILE__));
     }
 
 
@@ -197,8 +197,8 @@ class StatigramWidget extends WP_Widget
      */
     public function registerAdminScripts()
     {
-        wp_enqueue_script('statigram-admin-script-color', plugins_url('statigram/js/jscolor.js'));
-        wp_enqueue_script('statigram-admin-script', plugins_url('statigram/js/admin.js'));
+        wp_enqueue_script('statigram-admin-script-color', plugins_url('js/jscolor.js', __FILE__));
+        wp_enqueue_script('statigram-admin-script', plugins_url('js/admin.js', __FILE__));
     }
 
     /**
@@ -219,6 +219,15 @@ class StatigramWidget extends WP_Widget
         echo $after_widget;
     }
 
+    /**
+     * Get loader image
+     *
+     * @return string load path
+     */
+    public function getLoader()
+    {
+        return plugins_url('images/loader.gif', __FILE__);
+    }
 }
 
 // Manage plugin ativation/deactivation hooks
@@ -227,10 +236,4 @@ register_deactivation_hook(__FILE__, array("StatigramWidget", 'deactivate'));
 register_uninstall_hook(__FILE__, array("StatigramWidget", 'uninstall'));
 
 add_action('widgets_init', create_function('', 'register_widget("StatigramWidget");'));
-
-// Posting widget form
-if (isset($_POST['settingPlugin'])) {
-    var_dump($_POST);
-    Db::dbUpdateMultiFields($_POST);
-}
 
