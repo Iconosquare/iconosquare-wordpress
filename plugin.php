@@ -5,7 +5,7 @@
  * @category Wordpress
  * @package  Statigram_Wordpress
  * @author   rydgel <jerome.mahuet@gmail.com>
- * @license  MIT http://en.wikipedia.org/wiki/MIT_License
+ * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
  * @version  1.0
  * @link     http://statigr.am
 
@@ -16,7 +16,7 @@ Version: 1.0
 Author: Statigram
 Author URI: http://statigr.am
 Author Email: TODO
-Text Domain: widget-name-locale
+Text Domain: statigram-locale
 Domain Path: /lang/
 Network: false
 License: GPLv2 or later
@@ -44,7 +44,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  * @category Wordpress
  * @package  Statigram_Wordpress
  * @author   rydgel <jerome.mahuet@gmail.com>
- * @license  MIT http://en.wikipedia.org/wiki/MIT_License
+ * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
  * @version  1.0
  * @link     http://statigr.am
  */

@@ -5,7 +5,7 @@
  * @category Wordpress
  * @package  Statigram_Wordpress
  * @author   rydgel <jerome.mahuet@gmail.com>
- * @license  MIT http://en.wikipedia.org/wiki/MIT_License
+ * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
  * @version  1.0
  * @link     http://statigr.am
 
