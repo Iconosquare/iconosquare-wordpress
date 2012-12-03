@@ -44,7 +44,7 @@ class Db
      *
      * @return string table name
      */
-    public function getTableName()
+    public static function getTableName()
     {
         global $wpdb;
         return $wpdb->prefix . "statigram_widget";
@@ -58,7 +58,7 @@ class Db
      *
      * @return null
      */
-    public function dbInstall()
+    public static function dbInstall()
     {
         $table_name = self::getTableName();
 
@@ -97,7 +97,7 @@ class Db
      *
      * @return null
      */
-    public function dbRemove()
+    public static function dbRemove()
     {
         global $wpdb;
 
@@ -117,7 +117,7 @@ class Db
      *
      * @return null
      */
-    public function dbUpdateOneField($field, $value)
+    public static function dbUpdateOneField($field, $value)
     {
         if (isset($field) && isset($value)) {
             global $wpdb;
@@ -136,7 +136,7 @@ class Db
      *
      * @return null
      */
-    public function dbUpdateMultiFields($postDatas)
+    public static function dbUpdateMultiFields($postDatas)
     {
         if (isset($postDatas)) {
             self::dbUpdateOneField('content', $postDatas['choose-content']);
@@ -183,7 +183,7 @@ class Db
      *
      * @return null
      */
-    public function dbInsert($field, $value)
+    public static function dbInsert($field, $value)
     {
         if (isset($field) && isset($value)) {
             global $wpdb;
@@ -200,7 +200,7 @@ class Db
      *
      * @return array widget datas
      */
-    public function getPluginValues()
+    public static function getPluginValues()
     {
         global $wpdb;
 
@@ -211,5 +211,73 @@ class Db
         $pluginValues = $wpdb->get_row($querystr, OBJECT);
 
         return $pluginValues;
+    }
+
+    /**
+     * Parse values of database to build the iframe code
+     *
+     * @param array $pluginValues getPluginValues() data
+     *
+     * @return string iframe
+     */
+    public static function parseValues($pluginValues)
+    {
+        $values = array();
+        foreach ($pluginValues as $key => $value) {
+
+            if ($key === 'layoutX') {
+                $values['layout_x'] = $value;
+                continue;
+            }
+
+            if ($key === 'layoutY') {
+                $values['layout_y'] = $value;
+                continue;
+            }
+
+            if ($key === 'photoBorder') {
+                $values['photo_border'] = $value;
+                if ($values['photo_border']) {
+                    $values['photo_border'] = "true";
+                }
+                continue;
+            }
+
+            if ($key === 'widgetBorder') {
+                $values['widget_border'] = $value;
+                if ($values['widget_border']) {
+                    $values['widget_border'] = "true";
+                }
+                continue;
+            }
+
+            if ($key === 'borderColor') {
+                $values['border-color'] = $value;
+                continue;
+            }
+
+            if ($key === 'infos') {
+                $values['show_infos'] = $value;
+                continue;
+            }
+
+            if ($key === 'content') {
+                $values['choice'] = $value;
+                continue;
+            }
+
+            $values[$key] = $value;
+        }
+
+        if (!$values['username']) {
+            unset($values['username']);
+        }
+
+        if (!$values['hashtag']) {
+            unset($values['hashtag']);
+        }
+
+        $url = "http://statigr.am/widget.php?" . http_build_query($values);
+        return '<iframe src="'.$url.'" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:'.$values['width'].'px; height:'.$values['height'].'px;"></iframe>';
     }
 }

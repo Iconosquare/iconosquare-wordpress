@@ -201,7 +201,23 @@ class StatigramWidget extends WP_Widget
         wp_enqueue_script('statigram-admin-script', plugins_url('statigram/js/admin.js'));
     }
 
+    /**
+     * Outputs the content of the widget.
+     *
+     * @param array $args [description]
+     *
+     * @return [type]           [description]
+     */
+    public function widget($args)
+    {
+        extract($args, EXTR_SKIP);
 
+        echo $before_widget;
+
+        include plugin_dir_path(__FILE__) . '/views/widget.php';
+
+        echo $after_widget;
+    }
 
 }
 
