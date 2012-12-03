@@ -5,7 +5,7 @@
  * @category Wordpress
  * @package  Statigram_Wordpress
  * @author   rydgel <jerome.mahuet@gmail.com>
- * @license  MIT http://en.wikipedia.org/wiki/MIT_License
+ * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
  * @version  1.0
  * @link     http://statigr.am
 
@@ -16,7 +16,7 @@ Version: 1.0
 Author: Statigram
 Author URI: http://statigr.am
 Author Email: TODO
-Text Domain: widget-name-locale
+Text Domain: statigram-locale
 Domain Path: /lang/
 Network: false
 License: GPLv2 or later
@@ -46,7 +46,7 @@ include_once 'db.class';
  * @category Wordpress
  * @package  Statigram_Wordpress
  * @author   rydgel <jerome.mahuet@gmail.com>
- * @license  MIT http://en.wikipedia.org/wiki/MIT_License
+ * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
  * @version  1.0
  * @link     http://statigr.am
  */
@@ -57,9 +57,9 @@ class StatigramWidget extends WP_Widget
     const STATE_OF_ORIGIN = false;
 
     /**
-     * The widget constructor. Specifies the classname and description, instantiates
-     * the widget, loads localization files, and includes necessary scripts and
-     * styles.
+     * The widget constructor. Specifies the classname and description,
+     * instantiates the widget, loads localization files, and includes
+     * necessary scripts and styles.
      */
     public function __construct()
     {
@@ -91,7 +91,8 @@ class StatigramWidget extends WP_Widget
 
 
     /**
-     * Make our function to call the WordPress function to add to the correct menu.
+     * Make our function to call the WordPress function to add to
+     * the correct menu.
      *
      * @return null
      */
@@ -117,65 +118,11 @@ class StatigramWidget extends WP_Widget
 
 
     /**
-     * Outputs the content of the widget.
-     *
-     * @param array    $args     The array of form elements
-     * @param instance $instance The current instance of the widget
-     *
-     * @return string The content of the widget
-     */
-    public function widget($args, $instance)
-    {
-
-        extract($args, EXTR_SKIP);
-
-        echo $before_widget;
-
-        include plugin_dir_path(__FILE__) . '/views/widget.php';
-
-        echo $after_widget;
-
-    }
-
-
-    /**
-     * Processes the widget's options to be saved.
-     *
-     * @param instance $new_instance The previous instance of values before the update.
-     * @param instance $old_instance The new instance of values to be generated via the update.
-     *
-     * @return $new_instance
-     */
-    public function update($new_instance, $old_instance)
-    {
-        return $new_instance;
-    }
-
-
-    /**
-     * Generates the administration form for the widget.
-     *
-     * @param instance $instance The array of keys and values for the widget.
-     *
-     * @return null
-     */
-    public function form($instance)
-    {
-        // No form here
-        return null;
-    }
-
-
-    /**
      * Fired when the plugin is activated.
      *
-     * @param boolean $network_wide True if WPMU superadmin uses
-     * "Network Activate" action, false if WPMU is disabled or plugin is
-     * activated on an individual blog
-     *
      * @return null
      */
-    public function activate($network_wide)
+    public function activate()
     {
         // Redirect the user to the widget dashboard after activation
         add_option('statigram_do_activation_redirect', true);
@@ -201,13 +148,9 @@ class StatigramWidget extends WP_Widget
     /**
      * Fired when the plugin is deactivated.
      *
-     * @param boolean $network_wide True if WPMU superadmin uses
-     * "Network Activate" action, false if WPMU is disabled or plugin is
-     * activated on an individual blog
-     *
-     * @return [type]               [description]
+     * @return null
      */
-    public function deactivate($network_wide)
+    public function deactivate()
     {
         // Nothing for the moment
     }
@@ -216,13 +159,9 @@ class StatigramWidget extends WP_Widget
     /**
      * Fired when the plugin is uninstalled
      *
-     * @param boolean $network_wide True if WPMU superadmin uses
-     * "Network Activate" action, false if WPMU is disabled or plugin is
-     * activated on an individual blog
-     *
-     * @return [type]               [description]
+     * @return null
      */
-    public function uninstall($network_wide)
+    public function uninstall()
     {
         // @TODO: remove tables
         db::dbRemove();

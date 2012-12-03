@@ -1,13 +1,13 @@
 === Statigram Widget ===
 
-Contributors: rydgel
+Contributors: statigram
 Donate link: http://statigr.am
 Tags: instagram, statigram, widget
 Requires at least: 3.3.1
-Tested up to: 3.3.1
+Tested up to: 3.4.2
 Stable tag: 4.3
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License: MIT or later
+License URI: http://en.wikipedia.org/wiki/MIT_License
 
 Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
 
