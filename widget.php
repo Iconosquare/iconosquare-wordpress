@@ -180,7 +180,9 @@ class StatigramWidget extends WP_Widget
      */
     public function activate($network_wide)
     {
-        // TODO define activation functionality here
+        // Redirect the user to the widget dashboard after activation
+        wp_redirect(admin_url('themes.php?page=statigram'));
+        exit();
     }
 
     /**
