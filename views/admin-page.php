@@ -1,3 +1,18 @@
+<?php
+/**
+ * Statigram Wordpress Plugin
+ *
+ * @category Wordpress
+ * @package  Statigram_Wordpress
+ * @author   rydgel <jerome.mahuet@gmail.com>
+ * @author   gaetan <gaetan@statigr.am>
+ * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
+ * @version  1.0
+ * @link     http://statigr.am
+ **/
+$pluginValues = Db::getPluginValues();
+?>
+
 <div class='wrap' id="wrap-statigram">
     <div id="icon-themes" class="icon32"><br></div>
     <h2>Generate your Instagram widget</h2>
@@ -10,7 +25,7 @@
                 </div>
                 <div class="widget-holder">
                     <div class="content-column">
-                        <form method="post" action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI']); ?>">
+                        <form method="post" action="<?php echo str_replace('%7E', '~', $_SERVER['REQUEST_URI']); ?>">
                             <input type="hidden" name="settingPlugin" value='1'>
                             <input type="hidden" id="notrack" value='1'>
                             <table class="form-table">
