@@ -44,7 +44,7 @@
                 parameters.show_infos = $('#infos').is(':checked');
             }
 
-            if (chooseMode.val() === 'hashtag') {
+            if (chooseContent.val() === 'hashtag') {
                 parameters.choice = 'hashtag';
                 parameters.hashtag = $('#hashtag').val();
                 parameters.show_infos = false;
@@ -88,6 +88,42 @@
 
             var iframeWrapper = $('#content-iframe');
             iframeWrapper.html(generateHtmlIframe);
+
+            $('#choose-content').change(function() {
+                if ($(this).val() === 'myfeed') {
+                    $('.hash-group').hide();
+                    $('.user-group').show();
+                }
+
+                if ($(this).val() === 'hashtag') {
+                    $('.user-group').hide();
+                    $('.hash-group').show();
+                }
+            });
+
+            $('#username').change(function() {
+                if ($.trim($(this).val()) === '') {
+                    $(this).val($('#user').val());
+                }
+            });
+
+            $('#hashtag').change(function() {
+                if ($.trim($(this).val()) === '') {
+                    $(this).val('statigram');
+                }
+            });
+
+            $('#choose-mode').change(function() {
+                if ($(this).val() === 'slideshow') {
+                    $('.mode-grid').hide();
+                    $('.mode-slideshow').show();
+                }
+
+                if ($(this).val() === 'grid') {
+                    $('.mode-slideshow').hide();
+                    $('.mode-grid').show();
+                }
+            });
 
             $('#wrap-statigram #widgets-left input, #wrap-statigram #widgets-left select').each(function() {
                 $(this).change(function() {
