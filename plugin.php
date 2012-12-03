@@ -4,7 +4,8 @@
  *
  * @category Wordpress
  * @package  Statigram_Wordpress
- * @author   rydgel <jerome.mahuet@gmail.com>
+ * @author   rydgel <gcc@statigr.am>
+ * @author   gaetan <gaetan@statigr.am>
  * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
  * @version  1.0
  * @link     http://statigr.am
@@ -38,14 +39,15 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-include_once 'db.class';
+require_once 'db.class.php';
 
 /**
  * Statigram Widget Main Class
  *
  * @category Wordpress
  * @package  Statigram_Wordpress
- * @author   rydgel <jerome.mahuet@gmail.com>
+ * @author   rydgel <gcc@statigr.am>
+ * @author   gaetan <gaetan@statigr.am>
  * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
  * @version  1.0
  * @link     http://statigr.am
@@ -112,7 +114,6 @@ class StatigramWidget extends WP_Widget
      */
     public function attOptionsPage()
     {
-        $pluginValues = db::getPluginValues();
         include plugin_dir_path(__FILE__) . '/views/admin-page.php';
     }
 
@@ -126,7 +127,7 @@ class StatigramWidget extends WP_Widget
     {
         // Redirect the user to the widget dashboard after activation
         add_option('statigram_do_activation_redirect', true);
-        db::dbInstall();
+        Db::dbInstall();
     }
 
 
@@ -163,8 +164,7 @@ class StatigramWidget extends WP_Widget
      */
     public function uninstall()
     {
-        // @TODO: remove tables
-        db::dbRemove();
+        Db::dbRemove();
     }
 
 
@@ -200,9 +200,9 @@ class StatigramWidget extends WP_Widget
         wp_enqueue_script('statigram-admin-script-color', plugins_url('statigram/js/jscolor.js'));
         wp_enqueue_script('statigram-admin-script', plugins_url('statigram/js/admin.js'));
     }
-    
-  
-        
+
+
+
 }
 
 // Manage plugin ativation/deactivation hooks
@@ -212,7 +212,7 @@ register_uninstall_hook(__FILE__, array("StatigramWidget", 'uninstall'));
 
 add_action('widgets_init', create_function('', 'register_widget("StatigramWidget");'));
 
-//Soumission du formulaire
+// Posting widget form
 if (isset($_POST['settingPlugin'])) {
     $updateSuccess = db::dbUpdateMultiFields($_POST);
 }
