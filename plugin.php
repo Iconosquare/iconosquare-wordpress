@@ -52,7 +52,7 @@ class StatigramWidget extends WP_Widget
 {
     // Set this to true to get the state of origin, so you don't need to always
     // uninstall during development.
-    const STATE_OF_ORIGIN = true;
+    const STATE_OF_ORIGIN = false;
 
     /**
      * The widget constructor. Specifies the classname and description, instantiates
@@ -66,7 +66,11 @@ class StatigramWidget extends WP_Widget
             __('Statigram Widget', 'statigram-locale'),
             array(
                 'classname'     =>  'statigram-widget',
-                'description'   =>  __('This advanced widget lets you beautifully showcase Instagram photos on your blog or website.', 'statigram-locale')
+                'description'   =>  __(
+                    'This advanced widget lets you
+                    beautifully showcase Instagram photos on your blog
+                    or website.', 'statigram-locale'
+                )
            )
         );
 
@@ -83,6 +87,7 @@ class StatigramWidget extends WP_Widget
         add_action('admin_menu', array($this, 'attAddOptions'));
     }
 
+
     /**
      * Make our function to call the WordPress function to add to the correct menu.
      *
@@ -96,6 +101,7 @@ class StatigramWidget extends WP_Widget
         );
     }
 
+
     /**
      * Content of the Admin Page
      *
@@ -106,13 +112,14 @@ class StatigramWidget extends WP_Widget
         include plugin_dir_path(__FILE__) . '/views/admin-page.php';
     }
 
+
     /**
      * Outputs the content of the widget.
      *
      * @param array    $args     The array of form elements
      * @param instance $instance The current instance of the widget
      *
-     * @return [type]           [description]
+     * @return string The content of the widget
      */
     public function widget($args, $instance)
     {
@@ -134,25 +141,27 @@ class StatigramWidget extends WP_Widget
      * @param instance $new_instance The previous instance of values before the update.
      * @param instance $old_instance The new instance of values to be generated via the update.
      *
-     * @return [type]                [description]
+     * @return $new_instance
      */
     public function update($new_instance, $old_instance)
     {
         return $new_instance;
     }
 
+
     /**
      * Generates the administration form for the widget.
      *
      * @param instance $instance The array of keys and values for the widget.
      *
-     * @return [type]           [description]
+     * @return null
      */
     public function form($instance)
     {
         // No form here
         return null;
     }
+
 
     /**
      * Fired when the plugin is activated.
@@ -161,7 +170,7 @@ class StatigramWidget extends WP_Widget
      * "Network Activate" action, false if WPMU is disabled or plugin is
      * activated on an individual blog
      *
-     * @return [type]               [description]
+     * @return null
      */
     public function activate($network_wide)
     {
@@ -170,6 +179,11 @@ class StatigramWidget extends WP_Widget
     }
 
 
+    /**
+     * Redirect the user when the plugin is activated
+     *
+     * @return null
+     */
     public function redirect()
     {
         if (get_option('statigram_do_activation_redirect', false)) {
@@ -178,6 +192,7 @@ class StatigramWidget extends WP_Widget
             exit();
         }
     }
+
 
     /**
      * Fired when the plugin is deactivated.
@@ -193,10 +208,11 @@ class StatigramWidget extends WP_Widget
         // Nothing for the moment
     }
 
+
     /**
      * Fired when the plugin is uninstalled
      *
-     * @param  boolean $network_wide True if WPMU superadmin uses
+     * @param boolean $network_wide True if WPMU superadmin uses
      * "Network Activate" action, false if WPMU is disabled or plugin is
      * activated on an individual blog
      *
@@ -207,6 +223,7 @@ class StatigramWidget extends WP_Widget
         // @TODO: remove tables
 
     }
+
 
     /**
      * Load the plugin text domain on "init"
@@ -228,6 +245,7 @@ class StatigramWidget extends WP_Widget
     {
         wp_enqueue_style('statigram-admin-styles', plugins_url('statigram/css/admin.css'));
     }
+
 
     /**
      * Registers and enqueues admin-specific JavaScript.
