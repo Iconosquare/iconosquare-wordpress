@@ -61,3 +61,8 @@
 #wrap-statigram .hash-group, #wrap-statigram .mode-slideshow {
     display: none;
 }
+
+#wrap-statigram #content-iframe img {
+    display: block;
+    margin: 0 auto;
+}

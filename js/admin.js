@@ -3,7 +3,7 @@
     $(function () {
 
         /**
-         * [build_url description]
+         * Generate a query string with a hash
          * @param  {string} url        base url
          * @param  {object} parameters key=value,key2=value2...
          * @return {string}            url + get variables
@@ -129,13 +129,22 @@
                 $(this).change(function() {
                     iframeWrapper.html(generateHtmlIframe);
 
-                    //var iframeId = $(this).attr('id');
-                    //var showLoader = (iframeId === 'choose-content' || 'hashtag' || 'username');
+                    var iframeId = $(this).attr('id');
+                    var showLoader = (iframeId === 'choose-content' || 'hashtag' || 'username');
 
-                    /*if (showLoader) {
-                        iframeWrapper.hide();
-                        iframeWrapper.append('<img src="../images/loading.gif" id="loadFlux">');
-                    }*/
+                    var iframe = $('#content-iframe iframe');
+
+                    if (showLoader) {
+                        iframe.hide();
+                        iframeWrapper.append('<img height=32 width=32 src="../wp-content/plugins/statigram/images/loader.gif" id="loaderFlux">');
+                    }
+
+                    iframe.load(function() {
+                        if (showLoader) {
+                            iframe.show();
+                            $('#loaderFlux').remove();
+                        }
+                    });
                 });
             });
 
