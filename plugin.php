@@ -41,3 +41,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 require plugin_dir_path(__FILE__) . "widget.php";
 
 add_action('widgets_init', create_function('', 'register_widget("StatigramWidget");'));
+
+$widget = new StatigramWidget();
+
+//Installation de la table si elle n'existe pas
+$widget->dbInstall();
+
+$widget->getPluginValues();
+

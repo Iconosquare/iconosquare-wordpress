@@ -228,4 +228,112 @@ class StatigramWidget extends WP_Widget
     {
         wp_enqueue_script('statigram-admin-script', plugins_url('statigram/js/admin.js'));
     }
+    
+    /**
+     * Create database table for widget
+     * 
+     * call register_activation_hook(__FILE__,'dbInstall'); in activation plugin file
+     * 
+     * @return null 
+     */
+    public function dbInstall()
+    {
+        global $wpdb;
+
+        $table_name = $wpdb->prefix . "statigram-widget"; 
+
+        $sql = "CREATE TABLE IF NOT EXISTS `$table_name` (
+                `choose-content` enum('feed','hashtag') NOT NULL DEFAULT 'feed',
+                `username` varchar(255) NOT NULL,
+                `hashtag` varchar(255) NOT NULL,
+                `linking` enum('statigram','instagram') NOT NULL DEFAULT 'statigram',
+                `infos` tinyint(1) NOT NULL DEFAULT '1',
+                `width` int(6) NOT NULL DEFAULT '380',
+                `height` int(6) NOT NULL,
+                `choose-mode` enum('grid','slideshow') NOT NULL DEFAULT 'grid',
+                `pace` int(6) NOT NULL DEFAULT '10',
+                `layoutX` int(1) NOT NULL DEFAULT '3',
+                `layoutY` int(1) NOT NULL DEFAULT '2',
+                `photo-border` tinyint(1) NOT NULL DEFAULT '1',
+                `background` varchar(6) NOT NULL DEFAULT 'FFFFFF',
+                `text` varchar(6) NOT NULL DEFAULT '777777',
+                `widget-border` tinyint(1) NOT NULL DEFAULT '1',
+                `radius` int(11) NOT NULL DEFAULT '5',
+                `border-color` varchar(6) NOT NULL DEFAULT 'DDDDDD',
+                PRIMARY KEY (`choose-content`)
+                );";
+        
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        dbDelta($sql);
+        
+        $this->dbInsert('username', 'statigram');
+    }
+    
+    /**
+     * Insert de valeur dans la database
+     * 
+     * call register_activation_hook(__FILE__,'dbInsert'); in activation plugin file
+     * 
+     * @param type $field
+     * @param type $value 
+     */
+    public function dbUpdate($field, $value)
+    {
+        if (isset($field) && isset($value)) {
+            update_option($field, $value);
+        }
+    }
+    
+    
+    /**
+     * Mise à jour dans champ $field avec la valeur $value
+     * 
+     * @global type $wpdb
+     * @param type $field
+     * @param type $value 
+     */
+    public function dbInsert($field, $value)
+    {
+        if (isset($field) && isset($value)) {
+            global $wpdb;
+            
+            $table_name = $wpdb->prefix . "statigram-widget"; 
+
+            $wpdb->insert( $table_name, array( "$field" => $value));
+        }        
+    }
+    
+    
+    
+    public function getPluginValues()
+    {
+//        $values = array('choose-content',
+//                        'username', 
+//                        'hashtag', 
+//                        'linking', 
+//                        'infos', 
+//                        'width', 
+//                        'height', 
+//                        'choose-mode', 
+//                        'pace', 
+//                        'layoutX', 
+//                        'layoutY', 
+//                        'photo-border', 
+//                        'background', 
+//                        'text', 
+//                        'widget-border', 
+//                        'radius', 
+//                        'border-color');
+        
+        global $wpdb;
+            
+        $table_name = $wpdb->prefix . "statigram-widget"; 
+        
+        $querystr = "SELECT * FROM $table_name";
+
+        $pluginValues = $wpdb->get_results($querystr, OBJECT);
+        var_dump($pluginValues);
+    }
+    
+    
 }
