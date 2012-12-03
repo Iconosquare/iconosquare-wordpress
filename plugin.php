@@ -89,6 +89,9 @@ class StatigramWidget extends WP_Widget
 
         // Register the admin page
         add_action('admin_menu', array($this, 'attAddOptions'));
+
+        // Add shortcode
+        add_shortcode('statigram_widget', array(new Db(), 'renderIframe'));
     }
 
 
