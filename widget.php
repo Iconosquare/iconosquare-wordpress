@@ -226,6 +226,7 @@ class StatigramWidget extends WP_Widget
      */
     public function registerAdminScripts()
     {
+        wp_enqueue_script('statigram-admin-script-color', plugins_url('statigram/js/jscolor.js'));
         wp_enqueue_script('statigram-admin-script', plugins_url('statigram/js/admin.js'));
     }
 }
