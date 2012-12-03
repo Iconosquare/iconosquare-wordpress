@@ -49,9 +49,9 @@ $pluginValues = Db::getPluginValues();
                                     <tr valign="top">
                                         <th scope="row"><label for="choose-content">Content</label></th>
                                         <td>
-                                        <select name="choose-content" id="choose-content">
-                                            <option <?php if($pluginValues->content == 'myfeed') echo 'selected="selected"'; ?> value="myfeed">My Feed</option>
-                                            <option <?php if($pluginValues->content == 'hashtag') echo 'selected="selected"'; ?> value="hashtag">Hashtag</option>
+                                        <select name="choice" id="choose-content">
+                                            <option <?php if($pluginValues->choice == 'myfeed') echo 'selected="selected"'; ?> value="myfeed">My Feed</option>
+                                            <option <?php if($pluginValues->choice == 'hashtag') echo 'selected="selected"'; ?> value="hashtag">Hashtag</option>
                                         </select>
                                         </td>
                                     </tr>
@@ -64,7 +64,7 @@ $pluginValues = Db::getPluginValues();
                                     <tr valign="top" class="user-group">
                                         <th scope="row">Informations</th>
                                         <td> <fieldset><legend class="screen-reader-text"><span>Show infos</span></legend><label for="infos">
-                                        <input name="infos" type="checkbox" id="infos" <?php if($pluginValues->infos) echo 'checked="checked"'; ?>>
+                                        <input name="show_infos" type="checkbox" id="infos" <?php if($pluginValues->show_infos) echo 'checked="checked"'; ?>>
                                         Show infos</label>
                                         </fieldset></td>
                                     </tr>
@@ -110,25 +110,25 @@ $pluginValues = Db::getPluginValues();
                                     <tr valign="top" class="mode-grid">
                                         <th scope="row"><label>Layout</label></th>
                                         <td>
-                                            <select name="layoutX" id="layoutX">
-                                                <option <?php if($pluginValues->layoutX == '1') echo 'selected="selected"'; ?> value="1">1</option>
-                                                <option <?php if($pluginValues->layoutX == '2') echo 'selected="selected"'; ?> value="2">2</option>
-                                                <option <?php if($pluginValues->layoutX == '3') echo 'selected="selected"'; ?> value="3">3</option>
-                                                <option <?php if($pluginValues->layoutX == '4') echo 'selected="selected"'; ?> value="4">4</option>
-                                                <option <?php if($pluginValues->layoutX == '5') echo 'selected="selected"'; ?> value="5">5</option>
-                                                <option <?php if($pluginValues->layoutX == '6') echo 'selected="selected"'; ?> value="6">6</option>
-                                                <option <?php if($pluginValues->layoutX == '7') echo 'selected="selected"'; ?> value="7">7</option>
+                                            <select name="layout_x" id="layoutX">
+                                                <option <?php if($pluginValues->layout_x == '1') echo 'selected="selected"'; ?> value="1">1</option>
+                                                <option <?php if($pluginValues->layout_x == '2') echo 'selected="selected"'; ?> value="2">2</option>
+                                                <option <?php if($pluginValues->layout_x == '3') echo 'selected="selected"'; ?> value="3">3</option>
+                                                <option <?php if($pluginValues->layout_x == '4') echo 'selected="selected"'; ?> value="4">4</option>
+                                                <option <?php if($pluginValues->layout_x == '5') echo 'selected="selected"'; ?> value="5">5</option>
+                                                <option <?php if($pluginValues->layout_x == '6') echo 'selected="selected"'; ?> value="6">6</option>
+                                                <option <?php if($pluginValues->layout_x == '7') echo 'selected="selected"'; ?> value="7">7</option>
                                             </select>
                                             <span class="sep">X</span>
-                                            <select name="layoutY" id="layoutY">
-                                                <option <?php if($pluginValues->layoutY == '1') echo 'selected="selected"'; ?> value="1">1</option>
-                                                <option <?php if($pluginValues->layoutY == '2') echo 'selected="selected"'; ?> value="2" selected="">2</option>
-                                                <option <?php if($pluginValues->layoutY == '3') echo 'selected="selected"'; ?> value="3">3</option>
-                                                <option <?php if($pluginValues->layoutY == '4') echo 'selected="selected"'; ?> value="4">4</option>
-                                                <option <?php if($pluginValues->layoutY == '5') echo 'selected="selected"'; ?> value="5">5</option>
-                                                <option <?php if($pluginValues->layoutY == '6') echo 'selected="selected"'; ?> value="6">6</option>
-                                                <option <?php if($pluginValues->layoutY == '7') echo 'selected="selected"'; ?> value="7">7</option>
-                                                <option <?php if($pluginValues->layoutY == '8') echo 'selected="selected"'; ?> value="8">8</option>
+                                            <select name="layout_y" id="layoutY">
+                                                <option <?php if($pluginValues->layout_y == '1') echo 'selected="selected"'; ?> value="1">1</option>
+                                                <option <?php if($pluginValues->layout_y == '2') echo 'selected="selected"'; ?> value="2" selected="">2</option>
+                                                <option <?php if($pluginValues->layout_y == '3') echo 'selected="selected"'; ?> value="3">3</option>
+                                                <option <?php if($pluginValues->layout_y == '4') echo 'selected="selected"'; ?> value="4">4</option>
+                                                <option <?php if($pluginValues->layout_y == '5') echo 'selected="selected"'; ?> value="5">5</option>
+                                                <option <?php if($pluginValues->layout_y == '6') echo 'selected="selected"'; ?> value="6">6</option>
+                                                <option <?php if($pluginValues->layout_y == '7') echo 'selected="selected"'; ?> value="7">7</option>
+                                                <option <?php if($pluginValues->layout_y == '8') echo 'selected="selected"'; ?> value="8">8</option>
                                             </select> &nbsp;
                                             <span class="help-inline">Horizontal x Vertical</span>
                                         </td>
@@ -147,7 +147,7 @@ $pluginValues = Db::getPluginValues();
                                     <tr valign="top">
                                         <th scope="row">Photo border</th>
                                         <td> <fieldset><legend class="screen-reader-text"><span>Border white with shadow</span></legend><label for="photo-border">
-                                        <input name="photo-border" type="checkbox" id="photo-border" <?php if($pluginValues->photoBorder) echo 'checked="checked"'; ?>>
+                                        <input name="photo_border" type="checkbox" id="photo-border" <?php if($pluginValues->photo_border) echo 'checked="checked"'; ?>>
                                         Border white with shadow</label>
                                         </fieldset></td>
                                     </tr>
@@ -167,7 +167,7 @@ $pluginValues = Db::getPluginValues();
                                     <tr valign="top" class="text">
                                         <th scope="row"><label for="text">Widget border</label></th>
                                         <td>
-                                            <input name="widget-border" type="checkbox" id="widget-border" <?php if($pluginValues->widgetBorder) echo 'checked="checked"'; ?>>
+                                            <input name="widget_border" type="checkbox" id="widget-border" <?php if($pluginValues->widget_border) echo 'checked="checked"'; ?>>
                                             <input name="radius" type="radius" id="radius" value="<?php echo $pluginValues->radius; ?>" class="small-text">px (radius)
                                             <input name="border-color" type="text" id="border-color" value="<?php echo $pluginValues->borderColor; ?>" class="regular-text color {required: false}">
                                         </td>

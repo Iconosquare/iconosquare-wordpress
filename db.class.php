@@ -63,25 +63,25 @@ class Db
         $table_name = self::getTableName();
 
         $sql = "CREATE TABLE IF NOT EXISTS `$table_name` (
-                `content` enum('myfeed','hashtag') NOT NULL DEFAULT 'myfeed',
+                `choice` enum('myfeed','hashtag') NOT NULL DEFAULT 'myfeed',
                 `username` varchar(255) NOT NULL,
                 `hashtag` varchar(255) NOT NULL DEFAULT 'statigram',
                 `linking` enum('statigram','instagram') NOT NULL DEFAULT 'statigram',
-                `infos` tinyint(1) NOT NULL DEFAULT '1',
+                `show_infos` enum('true','false') NOT NULL DEFAULT 'true',
                 `width` int(6) NOT NULL DEFAULT '380',
                 `height` int(6) NOT NULL DEFAULT '420',
                 `mode` enum('grid','slideshow') NOT NULL DEFAULT 'grid',
                 `pace` int(6) NOT NULL DEFAULT '10',
-                `layoutX` int(1) NOT NULL DEFAULT '3',
-                `layoutY` int(1) NOT NULL DEFAULT '2',
+                `layout_x` int(1) NOT NULL DEFAULT '3',
+                `layout_y` int(1) NOT NULL DEFAULT '2',
                 `padding` int(6) NOT NULL DEFAULT '10',
-                `photoBorder` tinyint(1) NOT NULL DEFAULT '1',
+                `photo_border` enum('true','false') NOT NULL DEFAULT 'true',
                 `background` varchar(6) NOT NULL DEFAULT 'FFFFFF',
                 `text` varchar(6) NOT NULL DEFAULT '777777',
-                `widgetBorder` tinyint(1) NOT NULL DEFAULT '1',
+                `widget_border` enum('true','false') NOT NULL DEFAULT 'true',
                 `radius` int(11) NOT NULL DEFAULT '5',
                 `borderColor` varchar(6) NOT NULL DEFAULT 'DDDDDD',
-                PRIMARY KEY (`content`)
+                PRIMARY KEY (`choice`)
                 );";
 
         include_once ABSPATH . 'wp-admin/includes/upgrade.php';
@@ -139,33 +139,33 @@ class Db
     public static function dbUpdateMultiFields($postDatas)
     {
         if (isset($postDatas)) {
-            self::dbUpdateOneField('content', $postDatas['choose-content']);
+            self::dbUpdateOneField('choice', $postDatas['choice']);
             self::dbUpdateOneField('username', $postDatas['username']);
-            if ($postDatas['infos'] == 'on') {
-                self::dbUpdateOneField('infos', 1);
+            if ($postDatas['show_infos'] == 'on') {
+                self::dbUpdateOneField('show_infos', true);
             } else {
-                self::dbUpdateOneField('infos', 0);
+                self::dbUpdateOneField('show_infos', false);
             }
             self::dbUpdateOneField('hashtag', $postDatas['hashtag']);
             self::dbUpdateOneField('linking', $postDatas['linking']);
             self::dbUpdateOneField('width', $postDatas['width']);
             self::dbUpdateOneField('height', $postDatas['height']);
             self::dbUpdateOneField('mode', $postDatas['choose-mode']);
-            self::dbUpdateOneField('layoutX', $postDatas['layoutX']);
-            self::dbUpdateOneField('layoutY', $postDatas['layoutY']);
+            self::dbUpdateOneField('layout_x', $postDatas['layout_x']);
+            self::dbUpdateOneField('layout_y', $postDatas['layout_y']);
             self::dbUpdateOneField('padding', $postDatas['padding']);
             self::dbUpdateOneField('pace', $postDatas['pace']);
-            if ($postDatas['photo-border'] == 'on') {
-                self::dbUpdateOneField('photoBorder', 1);
+            if ($postDatas['photo_border'] == 'on') {
+                self::dbUpdateOneField('photo_border', true);
             } else {
-                self::dbUpdateOneField('photoBorder', 0);
+                self::dbUpdateOneField('photo_border', false);
             }
             self::dbUpdateOneField('background', $postDatas['background']);
             self::dbUpdateOneField('text', $postDatas['text']);
-            if ($postDatas['widget-border'] == 'on') {
-                self::dbUpdateOneField('widgetBorder', 1);
+            if ($postDatas['widget_border'] == 'on') {
+                self::dbUpdateOneField('widget_border', true);
             } else {
-                self::dbUpdateOneField('widgetBorder', 0);
+                self::dbUpdateOneField('widget_border', false);
             }
             self::dbUpdateOneField('radius', $postDatas['radius']);
             self::dbUpdateOneField('borderColor', $postDatas['border-color']);
@@ -229,44 +229,8 @@ class Db
         $values = array();
         foreach ($pluginValues as $key => $value) {
 
-            if ($key === 'layoutX') {
-                $values['layout_x'] = $value;
-                continue;
-            }
-
-            if ($key === 'layoutY') {
-                $values['layout_y'] = $value;
-                continue;
-            }
-
-            if ($key === 'photoBorder') {
-                $values['photo_border'] = $value;
-                if ($values['photo_border']) {
-                    $values['photo_border'] = "true";
-                }
-                continue;
-            }
-
-            if ($key === 'widgetBorder') {
-                $values['widget_border'] = $value;
-                if ($values['widget_border']) {
-                    $values['widget_border'] = "true";
-                }
-                continue;
-            }
-
             if ($key === 'borderColor') {
                 $values['border-color'] = $value;
-                continue;
-            }
-
-            if ($key === 'infos') {
-                $values['show_infos'] = $value;
-                continue;
-            }
-
-            if ($key === 'content') {
-                $values['choice'] = $value;
                 continue;
             }
 

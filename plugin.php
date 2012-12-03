@@ -154,6 +154,7 @@ class StatigramWidget extends WP_Widget
     public function deactivate()
     {
         // Nothing for the moment
+        Db::dbRemove();
     }
 
 
