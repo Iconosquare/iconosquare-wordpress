@@ -9,7 +9,7 @@ Stable tag: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Showcase your recent Instagram photos or a Hashtag feed: grid/slideshow with a wide range of custom options. By Statigram.
+Showcase your recent Instagram photos or a Hashtag feed: grid/slideshow with a wide range of custom options. Powered by Statigram.
 
 == Description ==
 
@@ -37,8 +37,7 @@ You can also edit your theme and add it like that:
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the directory of the stable readme.txt, so in this case, `/tags/4.3/screenshot-1.png` (or jpg, jpeg, gif)
+1. This screen shot description corresponds to screenshot-1
 2. This is the second screen shot
 
 == Changelog ==

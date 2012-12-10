@@ -12,7 +12,7 @@
 
 Plugin Name: Instagram image gallery
 Plugin URI: http://statigr.am
-Description: Showcase your recent Instagram photos or a Hashtag feed: grid/slideshow with a wide range of custom options. By Statigram.
+Description: Showcase your recent Instagram photos or a Hashtag feed: grid/slideshow with a wide range of custom options. Powered by Statigram.
 Version: 1.0
 Author: Statigram
 Author URI: http://statigr.am
