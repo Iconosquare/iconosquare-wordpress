@@ -10,13 +10,13 @@
  * @version  1.0
  * @link     http://statigr.am
 
-Plugin Name: Statigram Widget
+Plugin Name: Instagram image gallery
 Plugin URI: http://statigr.am
-Description: TODO
+Description: Showcase your recent Instagram photos or a Hashtag feed: grid/slideshow with a wide range of custom options. By Statigram.
 Version: 1.0
 Author: Statigram
 Author URI: http://statigr.am
-Author Email: TODO
+Author Email: contact@statigr.am
 Text Domain: statigram-locale
 Domain Path: /lang/
 Network: false
