@@ -37,8 +37,8 @@ You can also edit your theme and add it like that:
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1
-2. This is the second screen shot
+1. Showcase your photos
+2. Showcase a tag
 
 == Changelog ==
 
