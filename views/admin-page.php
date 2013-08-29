@@ -7,16 +7,16 @@
  * @author   rydgel <jerome.mahuet@gmail.com>
  * @author   gaetan <gaetan@statigr.am>
  * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
- * @version  1.0
+ * @version  1.0.4
  * @link     http://statigr.am
  **/
 
 // Posting widget form
 if (isset($_POST['settingPlugin'])) {
-    $updateSuccess = db::dbUpdateMultiFields($_POST);
+    $updateSuccess = StatigramWidgetDb::dbUpdateMultiFields($_POST);
 }
 
-$pluginValues = Db::getPluginValues();
+$pluginValues = StatigramWidgetDb::getPluginValues();
 ?>
 
 <div class='wrap' id="wrap-statigram">

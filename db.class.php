@@ -7,7 +7,7 @@
  * @author   rydgel <gcc@statigr.am>
  * @author   gaetan <gaetan@statigr.am>
  * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
- * @version  1.0
+ * @version  1.0.4
  * @link     http://statigr.am
 
 Copyright 2012 Statigram (contact@statigr.am)
@@ -34,10 +34,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  * @author   rydgel <gcc@statigr.am>
  * @author   gaetan <gaetan@statigr.am>
  * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
- * @version  1.0
+ * @version  1.0.4
  * @link     http://statigr.am
  **/
-class Db
+class StatigramWidgetDb
 {
     /**
      * Get the Statigram Widget Database Table Name
@@ -257,7 +257,7 @@ class Db
     public static function renderIframe()
     {
         $pluginValues = self::getPluginValues();
-        $value = Db::parseValues($pluginValues);
+        $value = StatigramWidgetDb::parseValues($pluginValues);
 
         return $value;
     }

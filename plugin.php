@@ -7,13 +7,13 @@
  * @author   rydgel <gcc@statigr.am>
  * @author   gaetan <gaetan@statigr.am>
  * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
- * @version  1.0
+ * @version  1.0.4
  * @link     http://statigr.am
 
 Plugin Name: Instagram image gallery
 Plugin URI: http://statigr.am
 Description: Showcase your recent Instagram photos or a Hashtag feed: grid/slideshow with a wide range of custom options. Powered by Statigram.
-Version: 1.0
+Version: 1.0.4
 Author: Statigram
 Author URI: http://statigr.am
 Author Email: contact@statigr.am
@@ -49,7 +49,7 @@ require_once 'db.class.php';
  * @author   rydgel <gcc@statigr.am>
  * @author   gaetan <gaetan@statigr.am>
  * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
- * @version  1.0
+ * @version  1.0.4
  * @link     http://statigr.am
  */
 class StatigramWidget extends WP_Widget
@@ -91,7 +91,7 @@ class StatigramWidget extends WP_Widget
         add_action('admin_menu', array($this, 'attAddOptions'));
 
         // Add shortcode
-        add_shortcode('statigram_widget', array(new Db(), 'renderIframe'));
+        add_shortcode('statigram_widget', array(new StatigramWidgetDb(), 'renderIframe'));
     }
 
 
@@ -130,7 +130,7 @@ class StatigramWidget extends WP_Widget
     {
         // Redirect the user to the widget dashboard after activation
         add_option('statigram_do_activation_redirect', true);
-        Db::dbInstall();
+        StatigramWidgetDb::dbInstall();
     }
 
 
@@ -157,7 +157,7 @@ class StatigramWidget extends WP_Widget
      */
     public function uninstall()
     {
-        Db::dbRemove();
+        StatigramWidgetDb::dbRemove();
     }
 
 

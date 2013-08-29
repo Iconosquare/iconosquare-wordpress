@@ -1,11 +1,11 @@
 === Instagram image gallery ===
 
-Contributors: statigram
+Contributors: Statigram
 Donate link: http://statigr.am
 Tags: instagram, statigram, widget
 Requires at least: 3.3.1
-Tested up to: 3.5
-Stable tag: 1.0
+Tested up to: 3.6
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,6 +41,15 @@ You can also edit your theme and add it like that:
 2. Showcase a tag
 
 == Changelog ==
+
+= 1.0.4 =
+* Fix some issues
+
+= 1.0.3 =
+* Change contributor’s name
+
+= 1.0.2 =
+* Wordpress 3.5 compatibility
 
 = 1.0 =
 * First version
