@@ -5,7 +5,7 @@ Donate link: http://statigr.am
 Tags: instagram, statigram, widget
 Requires at least: 3.3.1
 Tested up to: 3.6
-Stable tag: 1.0.4
+Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,6 +41,15 @@ You can also edit your theme and add it like that:
 2. Showcase a tag
 
 == Changelog ==
+
+= 1.0.7 =
+* Fix compatibility issues
+
+= 1.0.6 =
+* Fix compatibility issues
+
+= 1.0.5 =
+* Rename Statigram to Iconosquare
 
 = 1.0.4 =
 * Fix some issues

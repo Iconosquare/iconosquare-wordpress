@@ -7,13 +7,13 @@
  * @author   rydgel <gcc@statigr.am>
  * @author   gaetan <gaetan@statigr.am>
  * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
- * @version  1.0.4
+ * @version  1.0.7
  * @link     http://statigr.am
 
 Plugin Name: Instagram image gallery
 Plugin URI: http://statigr.am
 Description: Showcase your recent Instagram photos or a Hashtag feed: grid/slideshow with a wide range of custom options. Powered by Statigram.
-Version: 1.0.4
+Version: 1.0.7
 Author: Statigram
 Author URI: http://statigr.am
 Author Email: contact@statigr.am
@@ -49,7 +49,7 @@ require_once 'db.class.php';
  * @author   rydgel <gcc@statigr.am>
  * @author   gaetan <gaetan@statigr.am>
  * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
- * @version  1.0.4
+ * @version  1.0.7
  * @link     http://statigr.am
  */
 class StatigramWidget extends WP_Widget
@@ -201,7 +201,7 @@ class StatigramWidget extends WP_Widget
      *
      * @return string widget html content
      */
-    public function widget($args)
+    public function widget($args, $instance = null)
     {
         extract($args, EXTR_SKIP);
 

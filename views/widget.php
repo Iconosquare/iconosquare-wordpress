@@ -7,7 +7,7 @@
  * @author   rydgel <gcc@statigr.am>
  * @author   gaetan <gaetan@statigr.am>
  * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
- * @version  1.0.4
+ * @version  1.0.7
  * @link     http://statigr.am
 
 Copyright 2012 Statigram (contact@statigr.am)
