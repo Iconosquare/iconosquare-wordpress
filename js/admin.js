@@ -77,14 +77,14 @@
             parameters.time = new Date().getTime().toString();
             parameters.notrack = notrack;
 
-            var domain = 'http://statigr.am/';
-            var url = buildUrl(domain + 'widget.php', parameters);
+            var domain = 'https://pro.iconosquare.com/';
+            var url = buildUrl(domain + 'widget/gallery', parameters);
             var iframeContent = '<iframe src="'+url+'" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:'+parameters.width+'px; height:'+parameters.height+'px;"></iframe>';
 
             return iframeContent;
         };
 
-        if (document.getElementById('wrap-statigram')) {
+        if (document.getElementById('wrap-iconosquare')) {
 
             var iframeWrapper = $('#content-iframe');
             iframeWrapper.html(generateHtmlIframe);
@@ -109,7 +109,7 @@
 
             $('#hashtag').change(function() {
                 if ($.trim($(this).val()) === '') {
-                    $(this).val('statigram');
+                    $(this).val('iconosquare');
                 }
             });
 
@@ -125,7 +125,7 @@
                 }
             });
 
-            $('#wrap-statigram #widgets-left input, #wrap-statigram #widgets-left select').each(function() {
+            $('#wrap-iconosquare #widgets-left input, #wrap-iconosquare #widgets-left select').each(function() {
                 $(this).change(function() {
                     iframeWrapper.html(generateHtmlIframe);
 

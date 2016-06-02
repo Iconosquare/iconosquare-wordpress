@@ -1,16 +1,17 @@
 <?php
 /**
- * Statigram Wordpress Database File
+ * Iconosquare Wordpress Database File
  *
  * @category Wordpress
- * @package  Statigram_Wordpress
+ * @package  Iconosquare_Wordpress
  * @author   rydgel <gcc@statigr.am>
  * @author   gaetan <gaetan@statigr.am>
+ * @author   martin <marcin@iconosqua.re>
  * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
- * @version  1.0.7
- * @link     http://statigr.am
+ * @version  1.0.8
+ * @link     https://pro.iconosquare.com
 
-Copyright 2012 Statigram (contact@statigr.am)
+Copyright 2016 Iconosquare (tecteam@iconosqua.re)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as
@@ -27,27 +28,28 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  **/
 
 /**
- * Statigram Widget Database Class
+ * Iconosquare Widget Database Class
  *
  * @category Wordpress
- * @package  Statigram_Wordpress
+ * @package  Iconosquare_Wordpress
  * @author   rydgel <gcc@statigr.am>
  * @author   gaetan <gaetan@statigr.am>
+ * @author   martin <marcin@iconosqua.re>
  * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
- * @version  1.0.7
- * @link     http://statigr.am
+ * @version  1.0.8
+ * @link     https://pro.iconosquare.com
  **/
-class StatigramWidgetDb
+class IconosquareWidgetDb
 {
     /**
-     * Get the Statigram Widget Database Table Name
+     * Get the Iconosquare Widget Database Table Name
      *
      * @return string table name
      */
     public static function getTableName()
     {
         global $wpdb;
-        return $wpdb->prefix . "statigram_widget";
+        return $wpdb->prefix . "iconosquare_widget";
     }
 
 
@@ -65,8 +67,8 @@ class StatigramWidgetDb
         $sql = "CREATE TABLE IF NOT EXISTS `$table_name` (
                 `choice` enum('myfeed','hashtag') NOT NULL DEFAULT 'myfeed',
                 `username` varchar(255) NOT NULL,
-                `hashtag` varchar(255) NOT NULL DEFAULT 'statigram',
-                `linking` enum('statigram','instagram') NOT NULL DEFAULT 'statigram',
+                `hashtag` varchar(255) NOT NULL DEFAULT 'iconosquare',
+                `linking` enum('iconosquare','instagram') NOT NULL DEFAULT 'iconosquare',
                 `show_infos` enum('true','false') NOT NULL DEFAULT 'true',
                 `width` int(6) NOT NULL DEFAULT '380',
                 `height` int(6) NOT NULL DEFAULT '420',
@@ -87,7 +89,7 @@ class StatigramWidgetDb
         include_once ABSPATH . 'wp-admin/includes/upgrade.php';
         dbDelta($sql);
 
-        self::dbInsert('username', 'statigram');
+        self::dbInsert('username', 'iconosquare');
     }
 
     /**
@@ -245,7 +247,7 @@ class StatigramWidgetDb
             unset($values['hashtag']);
         }
 
-        $url = "http://statigr.am/widget.php?" . http_build_query($values);
+        $url = "https://pro.iconosquare.com/widget/gallery?" . http_build_query($values);
         return '<iframe src="'.$url.'" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:'.$values['width'].'px; height:'.$values['height'].'px;"></iframe>';
     }
 
@@ -257,7 +259,7 @@ class StatigramWidgetDb
     public static function renderIframe()
     {
         $pluginValues = self::getPluginValues();
-        $value = StatigramWidgetDb::parseValues($pluginValues);
+        $value = IconosquareWidgetDb::parseValues($pluginValues);
 
         return $value;
     }

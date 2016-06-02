@@ -1,15 +1,15 @@
 === Instagram image gallery ===
 
-Contributors: Statigram
-Donate link: http://statigr.am
-Tags: instagram, statigram, widget
+Contributors: Iconosquare
+Donate link: https://pro.iconosquare.com
+Tags: instagram, iconosquare, widget
 Requires at least: 3.3.1
 Tested up to: 3.6
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Showcase your recent Instagram photos or a Hashtag feed: grid/slideshow with a wide range of custom options. Powered by Statigram.
+Showcase your recent Instagram photos or a Hashtag feed: grid/slideshow with a wide range of custom options. Powered by Iconosquare.
 
 == Description ==
 
@@ -25,15 +25,15 @@ widget width, slideshow pace and much more.
 
 Go to the download page and grab the latest version. Extract everything in your Wordpress
 plugins directory and enable it on your admin dashboard. You should now find a
-new item in the Appearance menu called **Statigram Widget**.
+new item in the Appearance menu called **Iconosquare Widget**.
 
 Play with the settings to get the one that suits best with your blog. Then go
 the Widgets menu and place where you want it to appear. You can also put it
-manually in a blog post with the following shortcode: `[statigram_widget]`.
+manually in a blog post with the following shortcode: `[iconosquare_widget]`.
 
 You can also edit your theme and add it like that:
 
-`<?php echo do_shortcode("[statigram_widget]"); ?>`
+`<?php echo do_shortcode("[iconosquare_widget]"); ?>`
 
 == Screenshots ==
 
@@ -41,6 +41,9 @@ You can also edit your theme and add it like that:
 2. Showcase a tag
 
 == Changelog ==
+
+= 1.0.8 =
+* Rename Statigram to Iconosquare
 
 = 1.0.7 =
 * Fix compatibility issues

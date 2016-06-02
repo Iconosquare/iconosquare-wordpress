@@ -1,25 +1,26 @@
 <?php
 /**
- * Statigram Wordpress Plugin
+ * Iconosquare Wordpress Plugin
  *
  * @category Wordpress
- * @package  Statigram_Wordpress
+ * @package  Iconosquare_Wordpress
  * @author   rydgel <jerome.mahuet@gmail.com>
  * @author   gaetan <gaetan@statigr.am>
+ * @author   martin <marcin@iconosqua.re>
  * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
- * @version  1.0.7
- * @link     http://statigr.am
+ * @version  1.0.8
+ * @link     https://pro.iconosquare.com
  **/
 
 // Posting widget form
 if (isset($_POST['settingPlugin'])) {
-    $updateSuccess = StatigramWidgetDb::dbUpdateMultiFields($_POST);
+    $updateSuccess = IconosquareWidgetDb::dbUpdateMultiFields($_POST);
 }
 
-$pluginValues = StatigramWidgetDb::getPluginValues();
+$pluginValues = IconosquareWidgetDb::getPluginValues();
 ?>
 
-<div class='wrap' id="wrap-statigram">
+<div class='wrap' id="wrap-iconosquare">
     <div id="icon-themes" class="icon32"><br></div>
     <h2>Generate your Instagram widget</h2>
     <br>
@@ -41,7 +42,7 @@ $pluginValues = StatigramWidgetDb::getPluginValues();
                 <div class="widget-holder">
                     <div class="content-column">
                         <form method="post" action="<?php echo str_replace('%7E', '~', $_SERVER['REQUEST_URI']); ?>">
-                            <input type="hidden" id="loader" value="<?php echo StatigramWidget::getLoader(); ?>">
+                            <input type="hidden" id="loader" value="<?php echo IconosquareWidget::getLoader(); ?>">
                             <input type="hidden" name="settingPlugin" value='1'>
                             <input type="hidden" id="notrack" value='1'>
                             <table class="form-table">
@@ -78,7 +79,7 @@ $pluginValues = StatigramWidgetDb::getPluginValues();
                                         <th scope="row"><label for="linking">Linking to</label></th>
                                         <td>
                                         <select name="linking" id="linking">
-                                            <option <?php if($pluginValues->linking == 'statigram') echo 'selected="selected"'; ?> value="statigram">Statigram</option>
+                                            <option <?php if($pluginValues->linking == 'iconosquare') echo 'selected="selected"'; ?> value="iconosquare">Iconosquare</option>
                                             <option <?php if($pluginValues->linking == 'instagram') echo 'selected="selected"'; ?> value="instagram">Instagram</option>
                                         </select>
                                         &nbsp; Choose where the link redirect

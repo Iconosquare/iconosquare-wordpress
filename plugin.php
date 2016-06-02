@@ -1,29 +1,30 @@
 <?php
 /**
- * Statigram Wordpress Plugin
+ * Iconosquare Wordpress Plugin
  *
  * @category Wordpress
- * @package  Statigram_Wordpress
+ * @package  Iconosquare_Wordpress
  * @author   rydgel <gcc@statigr.am>
  * @author   gaetan <gaetan@statigr.am>
+ * @author   martin <marcin@iconosqua.re>
  * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
- * @version  1.0.7
- * @link     http://statigr.am
+ * @version  1.0.8
+ * @link     https://pro.iconosquare.com
 
 Plugin Name: Instagram image gallery
-Plugin URI: http://statigr.am
-Description: Showcase your recent Instagram photos or a Hashtag feed: grid/slideshow with a wide range of custom options. Powered by Statigram.
-Version: 1.0.7
-Author: Statigram
-Author URI: http://statigr.am
-Author Email: contact@statigr.am
-Text Domain: statigram-locale
+Plugin URI: https://pro.iconosquare.com
+Description: Showcase your recent Instagram photos or a Hashtag feed: grid/slideshow with a wide range of custom options. Powered by Iconosquare.
+Version: 1.0.8
+Author: Iconosquare
+Author URI: https://pro.iconosquare.com
+Author Email: tecteam@iconosqua.re
+Text Domain: iconosquare-locale
 Domain Path: /lang/
 Network: false
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Copyright 2012 Statigram (contact@statigr.am)
+Copyright 2016 Iconosquare (tecteam@iconosqua.re)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as
@@ -42,17 +43,18 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 require_once 'db.class.php';
 
 /**
- * Statigram Widget Main Class
+ * Iconosquare Widget Main Class
  *
  * @category Wordpress
- * @package  Statigram_Wordpress
+ * @package  Iconosquare_Wordpress
  * @author   rydgel <gcc@statigr.am>
  * @author   gaetan <gaetan@statigr.am>
+ * @author   martin <marcin@iconosqua.re>
  * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
- * @version  1.0.7
- * @link     http://statigr.am
+ * @version  1.0.8
+ * @link     https://pro.iconosquare.com
  */
-class StatigramWidget extends WP_Widget
+class IconosquareWidget extends WP_Widget
 {
     // Set this to true to get the state of origin, so you don't need to always
     // uninstall during development.
@@ -66,14 +68,14 @@ class StatigramWidget extends WP_Widget
     public function __construct()
     {
         parent::__construct(
-            'statigram-id',
-            __('Statigram Widget', 'statigram-locale'),
+            'iconosquare-id',
+            __('Iconosquare Widget', 'iconosquare-locale'),
             array(
-                'classname'     =>  'statigram-widget',
+                'classname'     =>  'iconosquare-widget',
                 'description'   =>  __(
                     'This advanced widget lets you
                     beautifully showcase Instagram photos on your blog
-                    or website.', 'statigram-locale'
+                    or website.', 'iconosquare-locale'
                 )
            )
         );
@@ -91,7 +93,8 @@ class StatigramWidget extends WP_Widget
         add_action('admin_menu', array($this, 'attAddOptions'));
 
         // Add shortcode
-        add_shortcode('statigram_widget', array(new StatigramWidgetDb(), 'renderIframe'));
+        add_shortcode('iconosquare_widget', array(new IconosquareWidgetDb(), 'renderIframe'));
+        add_shortcode('statigram_widget', array(new IconosquareWidgetDb(), 'renderIframe'));
     }
 
 
@@ -104,8 +107,8 @@ class StatigramWidget extends WP_Widget
     public function attAddOptions()
     {
         add_theme_page(
-            'Statigram Widget Options', 'Statigram Widget', 8,
-            'statigram', array($this, 'attOptionsPage')
+            'Iconosquare Widget Options', 'Iconosquare Widget', 8,
+            'iconosquare', array($this, 'attOptionsPage')
         );
     }
 
@@ -129,8 +132,8 @@ class StatigramWidget extends WP_Widget
     public function activate()
     {
         // Redirect the user to the widget dashboard after activation
-        add_option('statigram_do_activation_redirect', true);
-        StatigramWidgetDb::dbInstall();
+        add_option('iconosquare_do_activation_redirect', true);
+        IconosquareWidgetDb::dbInstall();
     }
 
 
@@ -141,9 +144,9 @@ class StatigramWidget extends WP_Widget
      */
     public function redirect()
     {
-        if (get_option('statigram_do_activation_redirect', false)) {
-            delete_option('statigram_do_activation_redirect');
-            wp_redirect(admin_url('themes.php?page=statigram'));
+        if (get_option('iconosquare_do_activation_redirect', false)) {
+            delete_option('iconosquare_do_activation_redirect');
+            wp_redirect(admin_url('themes.php?page=iconosquare'));
             exit();
         }
     }
@@ -157,7 +160,7 @@ class StatigramWidget extends WP_Widget
      */
     public function uninstall()
     {
-        StatigramWidgetDb::dbRemove();
+        IconosquareWidgetDb::dbRemove();
     }
 
 
@@ -168,7 +171,7 @@ class StatigramWidget extends WP_Widget
      */
     public function textdomain()
     {
-        load_plugin_textdomain('statigram-locale', false, plugin_dir_path(__FILE__) . '/lang/');
+        load_plugin_textdomain('iconosquare-locale', false, plugin_dir_path(__FILE__) . '/lang/');
     }
 
 
@@ -179,7 +182,7 @@ class StatigramWidget extends WP_Widget
      */
     public function registerAdminStyles()
     {
-        wp_enqueue_style('statigram-admin-styles', plugins_url('css/admin.css', __FILE__));
+        wp_enqueue_style('iconosquare-admin-styles', plugins_url('css/admin.css', __FILE__));
     }
 
 
@@ -190,8 +193,8 @@ class StatigramWidget extends WP_Widget
      */
     public function registerAdminScripts()
     {
-        wp_enqueue_script('statigram-admin-script-color', plugins_url('js/jscolor.js', __FILE__));
-        wp_enqueue_script('statigram-admin-script', plugins_url('js/admin.js', __FILE__));
+        wp_enqueue_script('iconosquare-admin-script-color', plugins_url('js/jscolor.js', __FILE__));
+        wp_enqueue_script('iconosquare-admin-script', plugins_url('js/admin.js', __FILE__));
     }
 
     /**
@@ -224,8 +227,8 @@ class StatigramWidget extends WP_Widget
 }
 
 // Manage plugin ativation/deactivation hooks
-register_activation_hook(__FILE__, array("StatigramWidget", 'activate'));
-register_uninstall_hook(__FILE__, array("StatigramWidget", 'uninstall'));
+register_activation_hook(__FILE__, array("IconosquareWidget", 'activate'));
+register_uninstall_hook(__FILE__, array("IconosquareWidget", 'uninstall'));
 
-add_action('widgets_init', create_function('', 'register_widget("StatigramWidget");'));
+add_action('widgets_init', create_function('', 'register_widget("IconosquareWidget");'));
 
