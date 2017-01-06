@@ -32,7 +32,7 @@
 }
 
 #wrap-iconosquare .content-column {
-    /*height: 710px;*/
+    height: 710px;
 }
 
 #wrap-iconosquare .form-table {
@@ -56,6 +56,7 @@
 #wrap-iconosquare #content-iframe {
     padding-top: 37px;
     padding-left: 28px;
+    height: 100%;
 }
 
 #wrap-iconosquare .hash-group, #wrap-iconosquare .mode-slideshow {
@@ -65,4 +66,8 @@
 #wrap-iconosquare #content-iframe img {
     display: block;
     margin: 0 auto;
+}
+
+#wpfooter {
+  display: none;
 }

@@ -8,10 +8,10 @@
  * @author   gaetan <gaetan@statigr.am>
  * @author   martin <marcin@iconosqua.re>
  * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
- * @version  1.0.8
+ * @version  1.1.1
  * @link     https://pro.iconosquare.com
 
-Copyright 2016 Iconosquare (tecteam@iconosqua.re)
+Copyright 2017 Iconosquare (tecteam@iconosqua.re)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as

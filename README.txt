@@ -4,8 +4,8 @@ Contributors: Iconosquare
 Donate link: https://pro.iconosquare.com
 Tags: instagram, iconosquare, widget
 Requires at least: 3.3.1
-Tested up to: 3.6
-Stable tag: 1.0.8
+Tested up to: 4.7
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,6 +41,10 @@ You can also edit your theme and add it like that:
 2. Showcase a tag
 
 == Changelog ==
+
+= 1.1.1 =
+* Add responsive option
+* Add custom title option
 
 = 1.0.8 =
 * Rename Statigram to Iconosquare

@@ -59,6 +59,9 @@
             parameters.widget_border = $('#widget-border').is(':checked');
             parameters.radius = $('#radius').val();
             parameters['border-color'] = $('#border-color').val();
+            parameters.title = $('#custom_title').val();
+            parameters['title-align'] = $('#title_align').val().toLowerCase();
+            parameters.responsive = $('#responsive_bool').is(":checked");
 
             if (chooseMode.val() === 'grid') {
                 parameters.mode = 'grid';
@@ -72,6 +75,18 @@
                 parameters.pace = $('#pace').val();
             }
 
+            if (parameters.responsive) {
+              parameters.width = "100%";
+              parameters.height = "100%";
+              $('#width').hide();
+              $('#height').hide();
+              $('.hideSize').hide();
+            } else {
+              $('#width').show();
+              $('#height').show();
+              $('.hideSize').show();
+            }
+
             // todo
             parameters.user_id = 'todo';
             parameters.time = new Date().getTime().toString();
@@ -79,7 +94,16 @@
 
             var domain = 'https://pro.iconosquare.com/';
             var url = buildUrl(domain + 'widget/gallery', parameters);
-            var iframeContent = '<iframe src="'+url+'" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:'+parameters.width+'px; height:'+parameters.height+'px;"></iframe>';
+
+            if (parameters.width == "100%" && parameters.height == "100%") {
+              var widthStr = "100%";
+              var heightStr = "100%"
+            } else {
+              var widthStr = parameters.width + 'px';
+              var heightStr = parameters.height + 'px';
+            }
+
+            var iframeContent = '<iframe src="'+url+'" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:'+widthStr+'; height:'+heightStr+';"></iframe>';
 
             return iframeContent;
         };

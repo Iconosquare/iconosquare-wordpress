@@ -8,7 +8,7 @@
  * @author   gaetan <gaetan@statigr.am>
  * @author   martin <marcin@iconosqua.re>
  * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
- * @version  1.0.8
+ * @version  1.1.1
  * @link     https://pro.iconosquare.com
  **/
 
@@ -47,6 +47,22 @@ $pluginValues = IconosquareWidgetDb::getPluginValues();
                             <input type="hidden" id="notrack" value='1'>
                             <table class="form-table">
                                 <tbody>
+                                    <tr valign="top" class="user-group">
+                                      <th scope="row"><label for="custom_title">Custom title</label></th>
+                                      <td><input name="custom_title" type="text" id="custom_title" value="<?php echo $pluginValues->custom_title; ?>" class="regular-text"></td>
+                                    </tr>
+
+                                    <tr valign="top">
+                                        <th scope="row"><label for="title_align">Title alignment</label></th>
+                                        <td>
+                                        <select name="title_align" id="title_align">
+                                            <option <?php if($pluginValues->title_align == 'LEFT') echo 'selected="selected"'; ?> value="LEFT">Left</option>
+                                            <option <?php if($pluginValues->title_align == 'CENTER') echo 'selected="selected"'; ?> value="CENTER">Center</option>
+                                            <option <?php if($pluginValues->title_align == 'RIGHT') echo 'selected="selected"'; ?> value="RIGHT">Right</option>
+                                        </select>
+                                        </td>
+                                    </tr>
+
                                     <tr valign="top">
                                         <th scope="row"><label for="choose-content">Content</label></th>
                                         <td>
@@ -88,12 +104,20 @@ $pluginValues = IconosquareWidgetDb::getPluginValues();
 
                                     <tr valign="top"><td><hr/></td></tr>
 
-                                    <tr valign="top">
+                                    <tr valign="top" class="user-group">
+                                        <th scope="row">Responsive mode</th>
+                                        <td> <fieldset><legend class="screen-reader-text"><span>Enable responsive mode</span></legend><label for="responsive_bool">
+                                        <input name="responsive_bool" type="checkbox" id="responsive_bool" <?php if ($pluginValues->responsive_bool) echo 'checked="checked"'; ?>>
+                                        Enable responsive mode</label>
+                                        </fieldset></td>
+                                    </tr>
+
+                                    <tr valign="top" class="hideSize" <?php if ($pluginValues->responsive_bool) echo 'style="display: none;"'; ?>>
                                         <th scope="row"><label for="width">Width (in pixels)</label></th>
                                         <td><input name="width" type="text" id="width" value="<?php echo $pluginValues->width; ?>" class="regular-text"></td>
                                     </tr>
 
-                                    <tr valign="top">
+                                    <tr valign="top" class="hideSize" <?php if ($pluginValues->responsive_bool) echo 'style="display: none;"'; ?>>
                                         <th scope="row"><label for="height">Height (in pixels)</label></th>
                                         <td><input name="height" type="text" id="height" value="<?php echo $pluginValues->height; ?>" class="regular-text"></td>
                                     </tr>

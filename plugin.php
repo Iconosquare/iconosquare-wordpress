@@ -8,13 +8,13 @@
  * @author   gaetan <gaetan@statigr.am>
  * @author   martin <marcin@iconosqua.re>
  * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
- * @version  1.0.8
+ * @version  1.1.1
  * @link     https://pro.iconosquare.com
 
 Plugin Name: Instagram image gallery
 Plugin URI: https://pro.iconosquare.com
 Description: Showcase your recent Instagram photos or a Hashtag feed: grid/slideshow with a wide range of custom options. Powered by Iconosquare.
-Version: 1.0.8
+Version: 1.1.1
 Author: Iconosquare
 Author URI: https://pro.iconosquare.com
 Author Email: tecteam@iconosqua.re
@@ -24,7 +24,7 @@ Network: false
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Copyright 2016 Iconosquare (tecteam@iconosqua.re)
+Copyright 2017 Iconosquare (tecteam@iconosqua.re)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as
@@ -51,7 +51,7 @@ require_once 'db.class.php';
  * @author   gaetan <gaetan@statigr.am>
  * @author   martin <marcin@iconosqua.re>
  * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
- * @version  1.0.8
+ * @version  1.1.1
  * @link     https://pro.iconosquare.com
  */
 class IconosquareWidget extends WP_Widget
@@ -59,6 +59,7 @@ class IconosquareWidget extends WP_Widget
     // Set this to true to get the state of origin, so you don't need to always
     // uninstall during development.
     const STATE_OF_ORIGIN = false;
+    const VERSION = 111;
 
     /**
      * The widget constructor. Specifies the classname and description,
@@ -134,6 +135,7 @@ class IconosquareWidget extends WP_Widget
         // Redirect the user to the widget dashboard after activation
         add_option('iconosquare_do_activation_redirect', true);
         IconosquareWidgetDb::dbInstall();
+        add_option('iconosquare_version', self::VERSION);
     }
 
 
@@ -224,11 +226,23 @@ class IconosquareWidget extends WP_Widget
     {
         return plugins_url('images/loader.gif', __FILE__);
     }
+
+    /**
+     * Upgrade hook
+     * @return void
+     */
+    public function checkUpdateVersion()
+    {
+        if (get_site_option("iconosquare_version") < self::VERSION) {
+          IconosquareWidgetDb::dbInstall();
+          add_option('iconosquare_version', self::VERSION);
+        }
+    }
 }
 
 // Manage plugin ativation/deactivation hooks
 register_activation_hook(__FILE__, array("IconosquareWidget", 'activate'));
+add_action('plugins_loaded', array("IconosquareWidget", 'checkUpdateVersion'));
 register_uninstall_hook(__FILE__, array("IconosquareWidget", 'uninstall'));
 
 add_action('widgets_init', create_function('', 'register_widget("IconosquareWidget");'));
-

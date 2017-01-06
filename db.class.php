@@ -8,10 +8,10 @@
  * @author   gaetan <gaetan@statigr.am>
  * @author   martin <marcin@iconosqua.re>
  * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
- * @version  1.0.8
+ * @version  1.1.1
  * @link     https://pro.iconosquare.com
 
-Copyright 2016 Iconosquare (tecteam@iconosqua.re)
+Copyright 2017 Iconosquare (tecteam@iconosqua.re)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as
@@ -36,7 +36,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  * @author   gaetan <gaetan@statigr.am>
  * @author   martin <marcin@iconosqua.re>
  * @license  GPLv2 http://www.gnu.org/licenses/gpl-2.0.html
- * @version  1.0.8
+ * @version  1.1.1
  * @link     https://pro.iconosquare.com
  **/
 class IconosquareWidgetDb
@@ -64,26 +64,29 @@ class IconosquareWidgetDb
     {
         $table_name = self::getTableName();
 
-        $sql = "CREATE TABLE IF NOT EXISTS `$table_name` (
-                `choice` enum('myfeed','hashtag') NOT NULL DEFAULT 'myfeed',
-                `username` varchar(255) NOT NULL,
-                `hashtag` varchar(255) NOT NULL DEFAULT 'iconosquare',
-                `linking` enum('iconosquare','instagram') NOT NULL DEFAULT 'iconosquare',
-                `show_infos` enum('true','false') NOT NULL DEFAULT 'true',
-                `width` int(6) NOT NULL DEFAULT '380',
-                `height` int(6) NOT NULL DEFAULT '420',
-                `mode` enum('grid','slideshow') NOT NULL DEFAULT 'grid',
-                `pace` int(6) NOT NULL DEFAULT '10',
-                `layout_x` int(1) NOT NULL DEFAULT '3',
-                `layout_y` int(1) NOT NULL DEFAULT '2',
-                `padding` int(6) NOT NULL DEFAULT '10',
-                `photo_border` enum('true','false') NOT NULL DEFAULT 'true',
-                `background` varchar(6) NOT NULL DEFAULT 'FFFFFF',
-                `text` varchar(6) NOT NULL DEFAULT '777777',
-                `widget_border` enum('true','false') NOT NULL DEFAULT 'true',
-                `radius` int(11) NOT NULL DEFAULT '5',
-                `borderColor` varchar(6) NOT NULL DEFAULT 'DDDDDD',
-                PRIMARY KEY (`choice`)
+        $sql = "CREATE TABLE $table_name (
+                choice enum('myfeed','hashtag') NOT NULL DEFAULT 'myfeed',
+                username varchar(255) NOT NULL,
+                hashtag varchar(255) NOT NULL DEFAULT 'iconosquare',
+                linking enum('iconosquare','instagram') NOT NULL DEFAULT 'iconosquare',
+                show_infos enum('true','false') NOT NULL DEFAULT 'true',
+                width int(6) NOT NULL DEFAULT '380',
+                height int(6) NOT NULL DEFAULT '420',
+                mode enum('grid','slideshow') NOT NULL DEFAULT 'grid',
+                pace int(6) NOT NULL DEFAULT '10',
+                layout_x int(1) NOT NULL DEFAULT '3',
+                layout_y int(1) NOT NULL DEFAULT '2',
+                padding int(6) NOT NULL DEFAULT '10',
+                photo_border enum('true','false') NOT NULL DEFAULT 'true',
+                background varchar(6) NOT NULL DEFAULT 'FFFFFF',
+                text varchar(6) NOT NULL DEFAULT '777777',
+                widget_border enum('true','false') NOT NULL DEFAULT 'true',
+                radius int(11) NOT NULL DEFAULT '5',
+                borderColor varchar(6) NOT NULL DEFAULT 'DDDDDD',
+                custom_title varchar(255) NOT NULL DEFAULT 'INSTAGRAM FEED',
+                title_align varchar(255) NOT NULL DEFAULT 'LEFT',
+                responsive_bool int(1) NOT NULL DEFAULT '0',
+                PRIMARY KEY  (choice)
                 );";
 
         include_once ABSPATH . 'wp-admin/includes/upgrade.php';
@@ -172,6 +175,15 @@ class IconosquareWidgetDb
             self::dbUpdateOneField('radius', $postDatas['radius']);
             self::dbUpdateOneField('borderColor', $postDatas['border-color']);
 
+            self::dbUpdateOneField('custom_title', $postDatas['custom_title']);
+            self::dbUpdateOneField('title_align', $postDatas['title_align']);
+
+            if ($postDatas['responsive_bool'] == 'on') {
+              self::dbUpdateOneField('responsive_bool', 1);
+            } else {
+              self::dbUpdateOneField('responsive_bool', 0);
+            }
+
             return true;
         } else {
             return false;
@@ -236,6 +248,21 @@ class IconosquareWidgetDb
                 continue;
             }
 
+            if ($key === "responsive_bool") {
+                $values['responsive'] = $value;
+                continue;
+            }
+
+            if ($key === "custom_title") {
+                $values["title"] = $value;
+                continue;
+            }
+
+            if ($key === "title_align") {
+                $values["title-align"] = strtolower($value);
+                continue;
+            }
+
             $values[$key] = $value;
         }
 
@@ -247,8 +274,16 @@ class IconosquareWidgetDb
             unset($values['hashtag']);
         }
 
+        if ($values['responsive_bool']) {
+          $values['width'] = "100%";
+          $values['height'] = "100%";
+        } else {
+          $values['width'] = $values['width'] . "px";
+          $values['height'] = $values['height'] . "px";
+        }
+
         $url = "https://pro.iconosquare.com/widget/gallery?" . http_build_query($values);
-        return '<iframe src="'.$url.'" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:'.$values['width'].'px; height:'.$values['height'].'px;"></iframe>';
+        return '<iframe src="'.$url.'" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:'.$values['width'].'; height:'.$values['height'].';"></iframe>';
     }
 
     /**
